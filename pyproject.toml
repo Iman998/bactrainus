@@ -46,7 +46,7 @@ data = [
 inference = [
   "accelerate>=1,<2",
   "torch>=2.4,<3",
-  "transformers>=4.45,<5",
+  "transformers>=4.45,<6",
 ]
 api = ["openai>=1.50,<2"]
 training = [
@@ -54,7 +54,7 @@ training = [
   "datasets>=3,<5",
   "peft>=0.13,<1",
   "torch>=2.4,<3",
-  "transformers>=4.45,<5",
+  "transformers>=4.45,<6",
   "trl>=0.12,<1",
 ]
 analysis = [
