@@ -40,7 +40,7 @@ dependencies = [
 
 [project.optional-dependencies]
 data = [
-  "datasets>=3,<5",
+  "datasets>=3,<6",
   "pyarrow>=17,<22",
 ]
 inference = [
@@ -51,7 +51,7 @@ inference = [
 api = ["openai>=1.50,<2"]
 training = [
   "accelerate>=1,<2",
-  "datasets>=3,<5",
+  "datasets>=3,<6",
   "peft>=0.13,<1",
   "torch>=2.4,<3",
   "transformers>=4.45,<5",
