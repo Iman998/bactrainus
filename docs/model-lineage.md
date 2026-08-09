@@ -36,7 +36,7 @@ Six full repositories expose `LlamaForCausalLM` checkpoints with tokenizer and g
 
 ## Data relationship
 
-All historical models are associated with HotpotQA-derived task data. The new canonical dataset, [`bactrianus/bactrianus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrianus-hotpotqa), provides clean deterministic training views. It is not asserted to be byte-for-byte identical to every historical 2024 training file.
+All historical models are associated with HotpotQA-derived task data. The canonical dataset contract at [`bactrianus/bactrianus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrianus-hotpotqa) defines clean deterministic training views, but the repository remains marked as a release candidate until its validated Parquet shards are published. Those views are not asserted to be byte-for-byte identical to every historical 2024 training file.
 
 Model-card metadata therefore names the official `hotpotqa/hotpot_qa` source dataset and links the canonical Bactrainus release textually with this provenance qualification.
 

@@ -7,7 +7,7 @@ These files are **provenance specifications**. They retain information that does
 To run training:
 
 1. choose the relevant specification under `training/`;
-2. select the compatible public dataset view;
+2. select the compatible canonical dataset view after a validated data revision is published;
 3. resolve the base-model and dataset identities to immutable Hub commits;
 4. copy only the strict `SftRecipe` fields into a new run file;
 5. record the source specification checksum and every override;

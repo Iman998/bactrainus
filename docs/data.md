@@ -1,12 +1,14 @@
 # Data Release
 
+> **Publication status:** this document is the normative schema and integrity contract. The public repository remains a transparent release candidate until all validated Parquet shards and `CHECKSUMS.sha256` are published together; its pending card is not an available loadable dataset revision.
+
 The canonical public training-data repository is [`bactrianus/bactrainus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrainus-hotpotqa).
 
-The release contains deterministic training views of the official English HotpotQA distractor training split. It does not contain evaluation material or experimental outputs.
+The completed release will contain deterministic training views of the official English HotpotQA distractor training split. It will not contain evaluation material or experimental outputs.
 
 ## Release boundary
 
-Every configuration contains 90,447 records with 90,447 unique HotpotQA source IDs. All configurations are train-only and preserve the same source-record identity.
+Every completed configuration must contain 90,447 records with 90,447 unique HotpotQA source IDs. All configurations are train-only and preserve the same source-record identity.
 
 | Configuration | Purpose | Record shape |
 |---|---|---|

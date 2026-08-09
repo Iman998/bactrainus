@@ -34,12 +34,12 @@ See [Architecture](docs/architecture.md) for the formal interfaces and failure b
 |---|---|---:|
 | Clean implementation and tests | This repository | Yes |
 | Revised experiment configurations | [`configs/`](configs/) | Yes |
-| Canonical training data | [`bactrianus/bactrianus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrianus-hotpotqa) | No |
+| Canonical training-data release candidate | [`bactrianus/bactrianus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrianus-hotpotqa) | No |
 | Historical Llama 3 models | [`bactrianus`](https://huggingface.co/bactrianus) | No |
 | Evaluation predictions and result files | Not distributed in the code repository | No |
 | Full methodology and reported results | [arXiv:2501.06286](https://arxiv.org/abs/2501.06286) | No |
 
-The canonical dataset release has five train-only configurations, each keyed by the same 90,447 unique HotpotQA source IDs:
+The canonical dataset contract defines five train-only configurations, each keyed by the same 90,447 unique HotpotQA source IDs:
 
 - `structured`
 - `reader-sft`
@@ -47,7 +47,9 @@ The canonical dataset release has five train-only configurations, each keyed by 
 - `sentence-selector-sft`
 - `joint-selector-reader-sft`
 
-No development/test examples, predictions, evaluation outputs, cross-lingual records, or unverified synthetic rationale/decomposition records are included in that release. See [Data](docs/data.md).
+No development/test examples, predictions, evaluation outputs, cross-lingual records, or unverified synthetic rationale/decomposition records will be included in that release. See [Data](docs/data.md).
+
+The Hugging Face repository remains explicitly marked as a release candidate until all validated Parquet shards and their checksum manifest are published in one revision. No partial local export is presented as usable data.
 
 ## Installation
 
