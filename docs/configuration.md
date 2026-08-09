@@ -98,7 +98,7 @@ The following block is a **template, not an executable checked-in recipe**. Repl
 name: <run-name>
 model_id: meta-llama/Meta-Llama-3.1-8B-Instruct
 model_revision: <immutable-hugging-face-commit>
-dataset_id: bactrianus/bactrianus-hotpotqa
+dataset_id: bactrianus/bactrainus-hotpotqa
 dataset_config: reader-sft
 dataset_revision: <immutable-hugging-face-commit>
 split: train

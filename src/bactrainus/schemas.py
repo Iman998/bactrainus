@@ -46,8 +46,11 @@ class TaskKind(str, Enum):
 
     STRUCTURED = "structured"
     READER = "reader"
+    COT_READER = "cot_reader"
     PARAGRAPH_SELECTOR = "paragraph_selector"
+    QUESTION_DECOMPOSER = "question_decomposer"
     SENTENCE_SELECTOR = "sentence_selector"
+    DECOMPOSED_SENTENCE_SELECTOR = "decomposed_sentence_selector"
     JOINT = "joint_selector_reader"
 
 

@@ -7,6 +7,7 @@ from typing import Protocol, TypeVar
 
 from ..prompts.catalog import PromptCatalog
 from ..prompts.renderer import (
+    decomposer_message,
     question_context_message,
     selector_message,
     sentence_selector_message,
@@ -25,7 +26,8 @@ RecordT = TypeVar("RecordT", StructuredRecord, TrainingRecord, covariant=True)
 _PROMPTS = PromptCatalog()
 _RELEASE_QUESTION_TYPES = frozenset({"bridge", "comparison"})
 _RELEASE_DIFFICULTIES = frozenset({"easy", "medium", "hard"})
-_RELEASE_PARAGRAPH_COUNT = 10
+_RELEASE_MIN_PARAGRAPHS = 2
+_RELEASE_MAX_PARAGRAPHS = 10
 
 
 class ExampleViewBuilder(Protocol[RecordT]):
@@ -37,10 +39,11 @@ class ExampleViewBuilder(Protocol[RecordT]):
 def validate_release_example(example: HotpotExample) -> None:
     """Validate invariants shared by every public train configuration."""
 
-    if len(example.context) != _RELEASE_PARAGRAPH_COUNT:
+    if not _RELEASE_MIN_PARAGRAPHS <= len(example.context) <= _RELEASE_MAX_PARAGRAPHS:
         raise ValueError(
-            f"release examples require exactly {_RELEASE_PARAGRAPH_COUNT} "
-            f"candidate paragraphs; received {len(example.context)}"
+            "release examples require between "
+            f"{_RELEASE_MIN_PARAGRAPHS} and {_RELEASE_MAX_PARAGRAPHS} candidate "
+            f"paragraphs; received {len(example.context)}"
         )
     if example.question_type not in _RELEASE_QUESTION_TYPES:
         raise ValueError(
@@ -139,6 +142,60 @@ def format_answer_target(answer: str) -> str:
     return f"answer: ***{answer.strip()}***"
 
 
+def build_gold_subquestions(example: HotpotExample) -> tuple[str, ...]:
+    """Create an ordered, evidence-grounded decomposition for selected paragraphs.
+
+    The paragraph-selection stage supplies the titles used here, so the target
+    does not expose information unavailable to the decomposer at inference time.
+    The transformation is deterministic and never depends on row position or a
+    teacher API response.
+    """
+
+    titles = example.gold_paragraph_titles
+    if not titles:
+        raise ValueError("question decomposition requires at least one gold paragraph")
+    questions: list[str] = []
+    for index, title in enumerate(titles):
+        if index == 0:
+            questions.append(
+                f'What information in "{title}" is needed to answer the original question?'
+            )
+            continue
+        prior_titles = ", ".join(f'"{value}"' for value in titles[:index])
+        questions.append(
+            f'How does the relevant information in "{title}" combine with the evidence '
+            f"from {prior_titles} to determine the answer?"
+        )
+    return tuple(questions)
+
+
+def format_decomposition_target(subquestions: Sequence[str]) -> str:
+    """Serialize an ordered sub-question target."""
+
+    if isinstance(subquestions, (str, bytes)):
+        raise TypeError("subquestions must be a sequence of strings")
+    resolved = tuple(subquestions)
+    if not resolved:
+        raise ValueError("decomposition target must not be empty")
+    if any(not isinstance(item, str) or not item.strip() for item in resolved):
+        raise TypeError("subquestions must be non-empty strings")
+    if len(resolved) != len(set(resolved)):
+        raise ValueError("decomposition target contains duplicates")
+    return "sub-questions:\n" + "\n".join(
+        f"{index}. {question.strip()}" for index, question in enumerate(resolved, start=1)
+    )
+
+
+def format_rationale_target(example: HotpotExample) -> str:
+    """Serialize a faithful evidence trace followed by the reference answer."""
+
+    steps = []
+    for index, fact in enumerate(example.supporting_facts, start=1):
+        sentence = example.paragraph(fact.title).sentences[fact.sentence_index].strip()
+        steps.append(f"{index}. [{fact.title}, sentence {fact.sentence_index}] {sentence}")
+    return "rationale:\n" + "\n".join(steps) + "\n" + format_answer_target(example.answer)
+
+
 def format_joint_target(example: HotpotExample) -> str:
     return (
         f"{format_supporting_fact_target(example.supporting_facts)}\n"
@@ -186,6 +243,20 @@ class ReaderViewBuilder:
         )
 
 
+class CotReaderViewBuilder:
+    """Build complete gold-evidence rationale and answer supervision."""
+
+    def build(self, example: HotpotExample) -> TrainingRecord:
+        validate_release_example(example)
+        return _chat_record(
+            example,
+            TaskKind.COT_READER,
+            _PROMPTS.rationale_teacher,
+            question_context_message(example.question, serialize_facts(example)),
+            format_rationale_target(example),
+        )
+
+
 class ParagraphSelectorViewBuilder:
     """Build paragraph-selection supervision from all candidate paragraphs."""
 
@@ -197,6 +268,24 @@ class ParagraphSelectorViewBuilder:
             _PROMPTS.paragraph_selector,
             selector_message(example.question, serialize_context(example)),
             format_paragraph_target(example.gold_paragraph_titles),
+        )
+
+
+class QuestionDecomposerViewBuilder:
+    """Build complete decomposer supervision after paragraph selection."""
+
+    def build(self, example: HotpotExample) -> TrainingRecord:
+        validate_release_example(example)
+        subquestions = build_gold_subquestions(example)
+        return _chat_record(
+            example,
+            TaskKind.QUESTION_DECOMPOSER,
+            _PROMPTS.question_decomposer,
+            decomposer_message(
+                example.question,
+                serialize_context(example, example.gold_paragraph_titles),
+            ),
+            format_decomposition_target(subquestions),
         )
 
 
@@ -212,6 +301,24 @@ class SentenceSelectorViewBuilder:
             sentence_selector_message(
                 example.question,
                 serialize_context(example, example.gold_paragraph_titles),
+            ),
+            format_supporting_fact_target(example.supporting_facts),
+        )
+
+
+class DecomposedSentenceSelectorViewBuilder:
+    """Build supporting-sentence supervision with an explicit decomposition."""
+
+    def build(self, example: HotpotExample) -> TrainingRecord:
+        validate_release_example(example)
+        return _chat_record(
+            example,
+            TaskKind.DECOMPOSED_SENTENCE_SELECTOR,
+            _PROMPTS.sentence_selector,
+            sentence_selector_message(
+                example.question,
+                serialize_context(example, example.gold_paragraph_titles),
+                subquestions=build_gold_subquestions(example),
             ),
             format_supporting_fact_target(example.supporting_facts),
         )

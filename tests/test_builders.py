@@ -5,8 +5,11 @@ import json
 import pytest
 
 from bactrainus.data.builders import (
+    CotReaderViewBuilder,
+    DecomposedSentenceSelectorViewBuilder,
     JointViewBuilder,
     ParagraphSelectorViewBuilder,
+    QuestionDecomposerViewBuilder,
     ReaderViewBuilder,
     SentenceSelectorViewBuilder,
     StructuredViewBuilder,
@@ -84,8 +87,11 @@ def test_training_views_are_explicit_and_machine_parseable() -> None:
     example = parse_hotpot_example(raw_example())
 
     reader = ReaderViewBuilder().build(example)
+    cot_reader = CotReaderViewBuilder().build(example)
     paragraph = ParagraphSelectorViewBuilder().build(example)
+    decomposition = QuestionDecomposerViewBuilder().build(example)
     sentence = SentenceSelectorViewBuilder().build(example)
+    decomposed_sentence = DecomposedSentenceSelectorViewBuilder().build(example)
     joint = JointViewBuilder().build(example)
 
     assert reader.task is TaskKind.READER
@@ -97,6 +103,14 @@ def test_training_views_are_explicit_and_machine_parseable() -> None:
     assert "Sentence 1: Alpha is in Tehran." in reader.messages[1].content
     assert reader.messages[-1].content == "answer: ***Tehran***"
 
+    assert cot_reader.task is TaskKind.COT_READER
+    assert cot_reader.messages[-1].content.splitlines() == [
+        "rationale:",
+        "1. [Alpha, sentence 1] Alpha is in Tehran.",
+        "2. [Beta, sentence 0] Beta also operates in Tehran.",
+        "answer: ***Tehran***",
+    ]
+
     assert paragraph.task is TaskKind.PARAGRAPH_SELECTOR
     assert "Distractor" in paragraph.messages[1].content
     assert paragraph.messages[-1].content.splitlines() == [
@@ -105,15 +119,35 @@ def test_training_views_are_explicit_and_machine_parseable() -> None:
         "paragraph ***Beta***",
     ]
 
+    assert decomposition.task is TaskKind.QUESTION_DECOMPOSER
+    assert decomposition.messages[-1].content.splitlines() == [
+        "sub-questions:",
+        '1. What information in "Alpha" is needed to answer the original question?',
+        '2. How does the relevant information in "Beta" combine with the evidence '
+        'from "Alpha" to determine the answer?',
+    ]
+
     assert sentence.task is TaskKind.SENTENCE_SELECTOR
     assert "Distractor" not in sentence.messages[1].content
     assert "sentence ***1***" in sentence.messages[-1].content
+
+    assert decomposed_sentence.task is TaskKind.DECOMPOSED_SENTENCE_SELECTOR
+    assert "Sub-questions:" in decomposed_sentence.messages[1].content
+    assert "sentence ***1***" in decomposed_sentence.messages[-1].content
 
     assert joint.task is TaskKind.JOINT
     assert joint.messages[-1].content.startswith("supporting facts:\n")
     assert joint.messages[-1].content.endswith("answer: ***Tehran***")
 
-    for record in (reader, paragraph, sentence, joint):
+    for record in (
+        reader,
+        cot_reader,
+        paragraph,
+        decomposition,
+        sentence,
+        decomposed_sentence,
+        joint,
+    ):
         payload = record.to_dict()
         assert set(payload) == {"source_id", "task", "messages"}
         assert payload["source_id"] == example.example_id
@@ -144,6 +178,18 @@ def test_invalid_supporting_fact_is_not_silently_repaired() -> None:
     raw["_id"] = " example-1 "
     with pytest.raises(ValueError, match="surrounding whitespace"):
         parse_hotpot_example(raw)
+
+
+def test_release_view_accepts_the_official_variable_candidate_count() -> None:
+    raw = raw_example()
+    raw["context"] = raw["context"][:2]
+    example = parse_hotpot_example(raw, split="train")
+    assert StructuredViewBuilder().build(example).example_id == "example-1"
+
+    raw["context"] = raw["context"][:1]
+    raw["supporting_facts"] = [["Alpha", 1]]
+    with pytest.raises(ValueError, match="between 2 and 10"):
+        StructuredViewBuilder().build(parse_hotpot_example(raw, split="train"))
 
 
 def test_loader_supports_json_array_and_jsonl(tmp_path) -> None:

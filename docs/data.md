@@ -1,10 +1,8 @@
 # Data Release
 
-> **Publication status:** this document is the normative schema and integrity contract. The public repository remains a transparent release candidate until all validated Parquet shards and `CHECKSUMS.sha256` are published together; its pending card is not an available loadable dataset revision.
-
 The canonical public training-data repository is [`bactrianus/bactrainus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrainus-hotpotqa).
 
-The completed release will contain deterministic training views of the official English HotpotQA distractor training split. It will not contain evaluation material or experimental outputs.
+The release contains deterministic training views of the official HotpotQA distractor training split at upstream revision `1908d6afbbead072334abe2965f91bd2709910ab`.
 
 ## Release boundary
 
@@ -14,18 +12,12 @@ Every completed configuration must contain 90,447 records with 90,447 unique Hot
 |---|---|---|
 | `structured` | Canonical lossless task representation | Structured fields |
 | `reader-sft` | Answer generation from selected evidence | Chat messages |
+| `cot-reader-sft` | Indexed evidence trace plus answer | Chat messages |
 | `paragraph-selector-sft` | Relevant-paragraph selection | Chat messages |
+| `question-decomposer-sft` | Grounded ordered sub-question generation | Chat messages |
 | `sentence-selector-sft` | Supporting-sentence selection | Chat messages |
+| `decomposed-sentence-selector-sft` | Supporting-sentence selection with sub-questions | Chat messages |
 | `joint-selector-reader-sft` | All-in-one evidence + answer target | Chat messages |
-
-The following artifacts are intentionally excluded:
-
-- HotpotQA development and test examples;
-- model predictions and API responses;
-- evaluation scores and result tables;
-- XHotpotQA or other cross-lingual data;
-- generated rationale data without verified source-ID provenance;
-- generated decomposition data without verified source-ID provenance.
 
 ## Canonical structured schema
 
@@ -68,13 +60,13 @@ The chat views are deterministic projections of the same 90,447 canonical record
 from datasets import load_dataset
 
 structured = load_dataset(
-    "bactrianus/bactrianus-hotpotqa",
+    "bactrianus/bactrainus-hotpotqa",
     "structured",
     split="train",
 )
 
 reader = load_dataset(
-    "bactrianus/bactrianus-hotpotqa",
+    "bactrianus/bactrainus-hotpotqa",
     "reader-sft",
     split="train",
 )
@@ -84,7 +76,7 @@ Pin a dataset revision for reproducible work:
 
 ```python
 structured = load_dataset(
-    "bactrianus/bactrianus-hotpotqa",
+    "bactrianus/bactrainus-hotpotqa",
     "structured",
     split="train",
     revision="<commit-or-release-tag>",
@@ -93,19 +85,19 @@ structured = load_dataset(
 
 ## Local construction
 
-Use the official `hotpot_train_v1.1.json` file as input and consult the command help for the installed release:
+The authoritative release scripts and source/patch manifests are published with the dataset. The package exposes every view builder through the CLI:
 
 ```bash
 bactrainus data build --help
 ```
 
-Local builders must satisfy these invariants:
+Local builders satisfy these invariants:
 
 1. Exactly one output record is produced per valid source example.
 2. `source_id` remains identical across every generated view.
 3. Source order is stable unless an explicitly documented sort is requested.
 4. Candidate and sentence order remain unchanged.
-5. Unknown or malformed records fail validation instead of being silently repaired.
+5. Source annotation repairs are explicit and keyed by source ID.
 6. Shard merging rejects duplicate IDs and incompatible schemas.
 
 ## Validation checklist
@@ -114,8 +106,8 @@ Before publishing a release, verify:
 
 - 90,447 rows in each configuration;
 - 90,447 unique `source_id` values in each configuration;
-- identical ID sets across all five configurations;
-- exactly ten candidate paragraphs in each structured record;
+- identical ID sets across all eight configurations;
+- the exact upstream candidate set (two to ten paragraphs; 89,609 records contain ten);
 - every supporting-fact title exists among its candidates;
 - every supporting-fact index is valid for its paragraph;
 - no dev/test IDs, predictions, scores, secrets, or absolute local paths;

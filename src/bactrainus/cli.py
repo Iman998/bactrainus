@@ -20,8 +20,11 @@ from .components import (
 )
 from .config import load_config
 from .data import (
+    CotReaderViewBuilder,
+    DecomposedSentenceSelectorViewBuilder,
     JointViewBuilder,
     ParagraphSelectorViewBuilder,
+    QuestionDecomposerViewBuilder,
     ReaderViewBuilder,
     SentenceSelectorViewBuilder,
     StructuredViewBuilder,
@@ -50,8 +53,11 @@ class DataView(str, Enum):
 
     STRUCTURED = "structured"
     READER = "reader-sft"
+    COT_READER = "cot-reader-sft"
     PARAGRAPH = "paragraph-selector-sft"
+    DECOMPOSER = "question-decomposer-sft"
     SENTENCE = "sentence-selector-sft"
+    DECOMPOSED_SENTENCE = "decomposed-sentence-selector-sft"
     JOINT = "joint-selector-reader-sft"
 
 
@@ -59,8 +65,11 @@ def _view_builder(view: DataView) -> Any:
     builders = {
         DataView.STRUCTURED: StructuredViewBuilder,
         DataView.READER: ReaderViewBuilder,
+        DataView.COT_READER: CotReaderViewBuilder,
         DataView.PARAGRAPH: ParagraphSelectorViewBuilder,
+        DataView.DECOMPOSER: QuestionDecomposerViewBuilder,
         DataView.SENTENCE: SentenceSelectorViewBuilder,
+        DataView.DECOMPOSED_SENTENCE: DecomposedSentenceSelectorViewBuilder,
         DataView.JOINT: JointViewBuilder,
     }
     return builders[view]()

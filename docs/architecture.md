@@ -1,6 +1,6 @@
 # Architecture
 
-Bactrainus separates evidence selection from answer generation so that paragraph, sentence, and answer errors remain observable. The implementation targets the HotpotQA distractor protocol, where every instance already supplies ten candidate paragraphs. It is therefore a fixed-candidate selector--reader system, not an open-domain retriever.
+Bactrainus separates evidence selection from answer generation so that paragraph, sentence, and answer errors remain observable. The implementation targets the HotpotQA distractor protocol, where every instance supplies a bounded candidate set rather than an open corpus. The official training source contains two to ten candidate paragraphs (89,609 of 90,447 contain ten), so this is a fixed-candidate selector--reader system rather than an open-domain retriever.
 
 ![Bactrainus selector--reader architecture](../assets/architecture.svg)
 

@@ -34,22 +34,23 @@ See [Architecture](docs/architecture.md) for the formal interfaces and failure b
 |---|---|---:|
 | Clean implementation and tests | This repository | Yes |
 | Revised experiment configurations | [`configs/`](configs/) | Yes |
-| Canonical training-data release candidate | [`bactrianus/bactrianus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrianus-hotpotqa) | No |
+| Complete canonical training suite | [`bactrianus/bactrainus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrainus-hotpotqa) | No |
 | Historical Llama 3 models | [`bactrianus`](https://huggingface.co/bactrianus) | No |
 | Evaluation predictions and result files | Not distributed in the code repository | No |
 | Full methodology and reported results | [arXiv:2501.06286](https://arxiv.org/abs/2501.06286) | No |
 
-The canonical dataset contract defines five train-only configurations, each keyed by the same 90,447 unique HotpotQA source IDs:
+The canonical dataset contract defines eight train-only configurations, each keyed by the same 90,447 unique HotpotQA source IDs:
 
 - `structured`
 - `reader-sft`
+- `cot-reader-sft`
 - `paragraph-selector-sft`
+- `question-decomposer-sft`
 - `sentence-selector-sft`
+- `decomposed-sentence-selector-sft`
 - `joint-selector-reader-sft`
 
-No development/test examples, predictions, evaluation outputs, cross-lingual records, or unverified synthetic rationale/decomposition records will be included in that release. See [Data](docs/data.md).
-
-The Hugging Face repository remains explicitly marked as a release candidate until all validated Parquet shards and their checksum manifest are published in one revision. No partial local export is presented as usable data.
+The suite includes complete gold-grounded CoT, decomposition, and component-specific SFT views. Every view is constructed from the same canonical source record and joined by `source_id`. See [Data](docs/data.md).
 
 ## Installation
 
@@ -136,7 +137,7 @@ python examples/build_reader_view.py
 
 ## Reproducibility boundaries
 
-- The official English HotpotQA distractor split contains 90,447 training and 7,405 development instances, with ten candidate paragraphs per instance.
+- The official English HotpotQA distractor split contains 90,447 training and 7,405 development instances. Training records preserve the upstream two-to-ten candidate paragraphs; 89,609 of 90,447 contain ten.
 - Reported architecture experiments use the full development split and Llama 3.1 checkpoints.
 - The 26-model screening is a January 2025 snapshot. Proprietary services may change after that date.
 - Closed-source screening values were based on a fixed 700-question subset and a full-set/subset calibration ratio estimated from paired open-model runs. They are coarse screening estimates, not significance tests.

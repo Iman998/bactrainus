@@ -74,9 +74,12 @@ class PromptCatalog:
         "answer: ***{ANSWER}***"
     )
     rationale_teacher: str = (
-        "You are an evidence-grounded reasoning assistant. Given a multi-hop question, gold "
-        "supporting evidence, and a reference answer, produce a concise ordered rationale "
-        "showing how the evidence leads to the answer. Use only supplied evidence and do not "
-        "introduce external knowledge.\n\n"
-        "Return only:\nrationale:\n1. {REASONING_STEP_1}\n2. {REASONING_STEP_2}\n..."
+        "You are an evidence-grounded reader for English multi-hop questions. Given a "
+        "question and gold supporting evidence, present a concise, ordered evidence trace "
+        "and then the final answer. Copy evidence faithfully, use only the supplied context, "
+        "and do not introduce external knowledge.\n\n"
+        "Return only:\nrationale:\n"
+        "1. [{PARAGRAPH_TITLE}, sentence {SENTENCE_INDEX}] {EVIDENCE}\n"
+        "2. ...\n"
+        "answer: ***{ANSWER}***"
     )

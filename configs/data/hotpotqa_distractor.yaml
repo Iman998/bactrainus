@@ -14,26 +14,27 @@ splits:
     examples: 7405
     public_release: false
 instance_contract:
-  candidate_paragraphs: 10
-  gold_paragraphs: 2
-  distractor_paragraphs: 8
+  candidate_paragraphs:
+    minimum: 2
+    maximum: 10
+    ten_paragraph_records: 89609
   sentence_indices: zero_based
   preserve_candidate_order: true
   preserve_sentence_order: true
 public_dataset:
-  repo_id: bactrianus/bactrianus-hotpotqa
+  repo_id: bactrianus/bactrainus-hotpotqa
   train_only: true
   configurations:
     - structured
     - reader-sft
+    - cot-reader-sft
     - paragraph-selector-sft
+    - question-decomposer-sft
     - sentence-selector-sft
+    - decomposed-sentence-selector-sft
     - joint-selector-reader-sft
 excluded_from_public_dataset:
   - validation_and_test_records
   - predictions
   - evaluation_results
   - api_payloads
-  - cross_lingual_data
-  - unverified_rationale_records
-  - unverified_decomposition_records
