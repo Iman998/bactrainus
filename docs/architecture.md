@@ -15,7 +15,7 @@ $$
 where:
 
 - \(q\) is the question;
-- \(D=\{d_1,\ldots,d_{10}\}\) is the supplied candidate set;
+- \(D=\{d_1,\ldots,d_m\}\), with \(m\in\{2,\ldots,10\}\), is the supplied candidate set;
 - \(a\) is the reference answer;
 - \(S\) is the set of supporting facts represented as `(title, sentence_index)` pairs;
 - \(P\subset D\) is the set of gold paragraphs.
@@ -45,7 +45,7 @@ $$
 The variables have explicit interface meanings:
 
 - \(\widehat P\): selected paragraph titles;
-- \(U=(u_1,\ldots,u_m)\): optional ordered subquestions;
+- \(U=(u_1,\ldots,u_r)\): optional ordered subquestions;
 - \(\widehat S\): selected supporting-fact pairs;
 - \(C\): a deterministic evidence serializer;
 - \(\widehat a\): concise predicted answer.
@@ -82,7 +82,7 @@ This factorization exposes interfaces; it is not a statistical-independence clai
 
 ### Paragraph selector
 
-Input: the question and all ten supplied candidates.
+Input: the question and all \(m\) supplied candidates.
 
 Output: an ordered, deduplicated list of exact candidate titles. A parser rejects unknown titles rather than silently substituting a fuzzy match.
 

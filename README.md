@@ -15,7 +15,9 @@ This repository is the cleaned research implementation accompanying the revised 
 
 ![Bactrainus selector--reader architecture](assets/architecture.svg)
 
-For a HotpotQA instance with question \(q\), ten supplied candidate paragraphs \(D\), gold answer \(a\), supporting facts \(S\), and gold paragraph set \(P\), the modular path is
+For a HotpotQA instance with question \(q\), a supplied candidate set \(D\) of
+\(m\in\{2,\ldots,10\}\) paragraphs, gold answer \(a\), supporting facts \(S\),
+and gold paragraph set \(P\), the modular path is
 
 $$
 \widehat P=f_P(q,D),\qquad
