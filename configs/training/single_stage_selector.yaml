@@ -1,0 +1,37 @@
+schema_version: 1
+experiment_id: single_stage_selector_8b
+task: joint_paragraph_and_sentence_selection
+model: ../models/llama_3_1_8b_instruct.yaml
+data:
+  config: ../data/hotpotqa_distractor.yaml
+  view: structured
+  train_examples: 90447
+  release_data_available: true
+  materialization: derive_supporting_fact_targets_from_structured_records
+training:
+  epochs: 2
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  effective_batch_size: 16
+  max_sequence_length: 4096
+  learning_rate: 1.0e-4
+  scheduler: cosine
+  warmup_ratio: 0.03
+  lora:
+    rank: 64
+    alpha: 128
+    dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+      - lm_head
+supervision:
+  target:
+    - supporting_facts
+  derived_outputs:
+    selected_paragraph_titles: unique_titles_of_predicted_supporting_facts

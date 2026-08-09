@@ -1,0 +1,25 @@
+schema_version: 1
+experiment_id: reader_context_ablation
+split: validation
+examples: 7405
+models:
+  - ../models/llama_3_1_8b_instruct.yaml
+  - ../models/llama_3_1_70b_instruct.yaml
+conditions:
+  - id: question_only
+    context: none
+  - id: gold_supporting_facts
+    context: gold_sentences_only
+  - id: gold_paragraphs
+    context: two_full_gold_paragraphs
+  - id: gold_plus_two_hard_distractors
+    context: two_full_gold_paragraphs_plus_two_non_gold_paragraphs
+    hard_distractor_count: 2
+    hard_distractor_selection: top_cosine_similarity_to_question
+  - id: all_ten_paragraphs
+    context: all_candidate_paragraphs
+metrics:
+  - answer_exact_match
+  - answer_f1
+generation_profile: fine_tuned_module
+claim_boundary: Conditions isolate observed context sensitivity; they do not identify a universal causal effect across model families.

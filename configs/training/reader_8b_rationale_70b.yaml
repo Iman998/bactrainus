@@ -1,0 +1,39 @@
+schema_version: 1
+experiment_id: reader_8b_continuation_rationale_from_70b_teacher
+task: rationale_supervised_answer_generation
+model: ../models/llama_3_1_8b_instruct.yaml
+initialization: reader_8b_direct
+data:
+  config: ../data/hotpotqa_distractor.yaml
+  subset: hard
+  evidence: gold_supporting_facts
+  train_examples: 15661
+  release_data_available: false
+  availability_note: Rationale records are excluded from the public dataset until source-ID provenance is verified.
+training:
+  epochs: 1
+  per_device_batch_size: 4
+  gradient_accumulation_steps: 16
+  effective_batch_size: 64
+  max_sequence_length: 1024
+  learning_rate: 1.0e-4
+  scheduler: cosine
+  warmup_ratio: 0.10
+  lora:
+    rank: 64
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+      - lm_head
+supervision:
+  target: rationale_then_answer
+  rationale: true
+  teacher: llama_3_1_70b_instruct
+  teacher_output_is_gold_evidence: false

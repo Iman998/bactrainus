@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use Bactrainus, please cite the accompanying paper."
+title: "Bactrainus"
+type: software
+authors:
+  - family-names: "Barati"
+    given-names: "Iman"
+  - family-names: "Ghafouri"
+    given-names: "Arash"
+  - family-names: "Minaei-Bidgoli"
+    given-names: "Behrouz"
+version: 0.1.0
+date-released: 2026-08-09
+license: Apache-2.0
+repository-code: "https://github.com/Iman998/bactrainus"
+url: "https://github.com/Iman998/bactrainus"
+keywords:
+  - multi-hop question answering
+  - large language models
+  - evidence selection
+  - HotpotQA
+  - selector-reader
+preferred-citation:
+  type: article
+  title: "Bactrainus: Optimizing Large Language Models for Multi-hop Complex Question Answering Tasks"
+  authors:
+    - family-names: "Barati"
+      given-names: "Iman"
+    - family-names: "Ghafouri"
+      given-names: "Arash"
+    - family-names: "Minaei-Bidgoli"
+      given-names: "Behrouz"
+  journal: "arXiv"
+  year: 2025
+  doi: "10.48550/arXiv.2501.06286"
+  url: "https://arxiv.org/abs/2501.06286"

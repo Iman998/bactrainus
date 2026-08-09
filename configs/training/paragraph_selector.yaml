@@ -1,0 +1,33 @@
+schema_version: 1
+experiment_id: paragraph_selector_8b
+task: paragraph_selection
+model: ../models/llama_3_1_8b_instruct.yaml
+data:
+  config: ../data/hotpotqa_distractor.yaml
+  view: paragraph-selector-sft
+  train_examples: 90447
+  release_data_available: true
+training:
+  epochs: 2
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  effective_batch_size: 16
+  max_sequence_length: 4096
+  learning_rate: 1.0e-4
+  scheduler: cosine
+  warmup_ratio: 0.03
+  lora:
+    rank: 64
+    alpha: 128
+    dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+      - lm_head
+supervision:
+  target: selected_paragraph_titles

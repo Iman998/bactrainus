@@ -1,0 +1,13 @@
+Bactrainus
+Copyright 2025-2026 Iman Barati, Arash Ghafouri, and Behrouz Minaei-Bidgoli
+
+The original source code, documentation, and architecture artwork in this
+repository are licensed under the Apache License, Version 2.0. That license
+does not relicense datasets, model weights, model outputs, or third-party
+assets.
+
+The Bactrainus architecture artwork included in assets/architecture.svg is
+original project artwork and contains no Flaticon assets.
+
+Third-party data and model notices are documented in
+THIRD_PARTY_NOTICES.md.

@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "bactrainus-demo-001",
+    "question": "In which country was the author born?",
+    "answer": "France",
+    "type": "bridge",
+    "level": "easy",
+    "context": [
+      ["The Author", ["The author was born in Paris."]],
+      ["Paris", ["Paris is the capital of France."]],
+      ["Candidate 03", ["This paragraph is unrelated to the question."]],
+      ["Candidate 04", ["This paragraph is unrelated to the question."]],
+      ["Candidate 05", ["This paragraph is unrelated to the question."]],
+      ["Candidate 06", ["This paragraph is unrelated to the question."]],
+      ["Candidate 07", ["This paragraph is unrelated to the question."]],
+      ["Candidate 08", ["This paragraph is unrelated to the question."]],
+      ["Candidate 09", ["This paragraph is unrelated to the question."]],
+      ["Candidate 10", ["This paragraph is unrelated to the question."]]
+    ],
+    "supporting_facts": [["The Author", 0], ["Paris", 0]]
+  }
+]

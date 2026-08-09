@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.coverage
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+dist/
+build/
+
+# Environments and credentials
+.env
+.venv/
+venv/
+*.pem
+*.key
+
+# Data, checkpoints, and experiment outputs
+/data/
+/outputs/
+/results/
+/checkpoints/
+/wandb/
+/mlruns/
+*.arrow
+*.parquet
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

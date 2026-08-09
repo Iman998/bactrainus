@@ -1,0 +1,45 @@
+schema_version: 1
+namespace: bactrianus
+artifact_generation: legacy_llama_3_august_2024
+identity_warning: These historical weights are Llama 3 artifacts. They are not Llama 3.1 checkpoints and must not be used as bit-equivalent substitutes for revised manuscript runs.
+artifacts:
+  - repo_id: bactrianus/HotpotQA-Reader-Llama-3-8B-Instruct
+    role: reader
+    scale: 8B
+    revision: 98c63afd55b5b4bd46890165e85e69c7d7d10a3d
+    status: full_checkpoint
+  - repo_id: bactrianus/HotpotQA-Reader-Llama-3-70B-Instruct
+    role: reader
+    scale: 70B
+    revision: 8f76e68c65955843fffbf5c9b0e0ae1e446fbf1a
+    status: full_checkpoint
+  - repo_id: bactrianus/HotpotQA-Reader-CoT-Llama-3-8B-Instruct
+    role: rationale_reader
+    scale: 8B
+    revision: 852277e5b9534ff51a66adbad1ad43b7a3ef4457
+    status: full_checkpoint
+  - repo_id: bactrianus/HotpotQA-OneStep-Retriever-Llama-3-8B-Instruct
+    role: joint_selector_reader
+    scale: 8B
+    revision: 7842b5845df7be3618e077a618866a3e0826972e
+    status: full_checkpoint
+  - repo_id: bactrianus/HotpotQA-Paragraph-Retriever-Llama-3-8B-Instruct
+    role: paragraph_selector
+    scale: 8B
+    revision: 1bc650152552e5a0ee7ee4afdfae01abc3bdc76e
+    status: full_checkpoint
+  - repo_id: bactrianus/HotpotQA-Sentence-Retriever-Llama-3-8B-Instruct
+    role: sentence_selector
+    scale: 8B
+    revision: 0ba9d0d84d7913f3d614061ebd71dca8690e9f93
+    status: full_checkpoint
+  - repo_id: bactrianus/HotpotQA-Question-Decomposition-Llama-3-8B-Instruct
+    role: question_decomposer
+    scale: 8B
+    revision: a55a003d5f1b748598b428facd3ffec306674546
+    status: metadata_only_no_weights
+  - repo_id: bactrianus/HotpotQA-Sentence-Retriever-QD-Llama-3-8B-Instruct
+    role: decomposition_conditioned_sentence_selector
+    scale: 8B
+    revision: 389dcb33320132800ca8198e764d46755c13fbcf
+    status: metadata_only_no_weights

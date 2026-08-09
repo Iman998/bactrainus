@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="493.228346456693" height="286.29921259842524" preserveAspectRatio="xMinYMin meet" viewBox="0 0 493 286" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="493.228346456693" height="286.29921259842524"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-286)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="10" y="137" width="66" height="53" rx="6" ry="6" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="32.8574" y="175.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,351) scale(1,-1)">Input</text>
+			<text x="23.735699999999998" y="165.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,331) scale(1,-1)">question +</text>
+			<text x="19.237099999999998" y="155.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,311) scale(1,-1)">10 candidate</text>
+			<text x="22.0093" y="145.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,291) scale(1,-1)">paragraphs</text>
+			<rect x="94" y="137" width="72" height="53" rx="6" ry="6" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,97%); fill-rule: evenodd;"/>
+			<text x="109.47409999999999" y="175.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,351) scale(1,-1)">Paragraph</text>
+			<text x="115.47085" y="165.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,331) scale(1,-1)">selector</text>
+			<text x="103.7056" y="155.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,311) scale(1,-1)">retain relevant</text>
+			<text x="112.238" y="145.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,291) scale(1,-1)">passages</text>
+			<rect x="184" y="137" width="74" height="53" rx="6" ry="6" style="stroke: rgb(75%,29%,0%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,94%,89%); fill-rule: evenodd;"/>
+			<text x="204.1676" y="175.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,351) scale(1,-1)">Optional</text>
+			<text x="198.1667" y="165.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,331) scale(1,-1)">decomposer</text>
+			<text x="182.82" y="155.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,311) scale(1,-1)">question + passages</text>
+			<text x="184.7871" y="145.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,291) scale(1,-1)">yields subquestions</text>
+			<rect x="276" y="137" width="74" height="53" rx="6" ry="6" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,97%); fill-rule: evenodd;"/>
+			<text x="294.5491" y="175.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,351) scale(1,-1)">Sentence</text>
+			<text x="298.47085" y="165.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,331) scale(1,-1)">selector</text>
+			<text x="284.85885" y="155.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,311) scale(1,-1)">identify support</text>
+			<text x="304.2352" y="145.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,291) scale(1,-1)">facts</text>
+			<rect x="368" y="137" width="72" height="53" rx="6" ry="6" style="stroke: rgb(23%,47%,34%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,96%,93%); fill-rule: evenodd;"/>
+			<text x="389.93149999999997" y="170.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,341) scale(1,-1)">Reader</text>
+			<text x="381.17085" y="160.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,321) scale(1,-1)">answer from</text>
+			<text x="370.78340000000003" y="150.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,301) scale(1,-1)">selected evidence</text>
+			<rect x="458" y="137" width="29" height="53" rx="6" ry="6" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="462.8139" y="165.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,331) scale(1,-1)">Final</text>
+			<text x="459.12455" y="155.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,311) scale(1,-1)">answer</text>
+			<path d="M 76,163.5 L 94,163.5 Z" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="94 163.5, 89 166.2, 89 160.8" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,13%,13%); fill-rule: evenodd;"/>
+			<path d="M 166,163.5 L 184,163.5 Z" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="184 163.5, 179 166.2, 179 160.8" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,13%,13%); fill-rule: evenodd;"/>
+			<path d="M 258,163.5 L 276,163.5 Z" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="276 163.5, 271 166.2, 271 160.8" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,13%,13%); fill-rule: evenodd;"/>
+			<path d="M 350,163.5 L 368,163.5 Z" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="368 163.5, 363 166.2, 363 160.8" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,13%,13%); fill-rule: evenodd;"/>
+			<path d="M 440,163.5 L 458,163.5 Z" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="458 163.5, 453 166.2, 453 160.8" style="stroke: rgb(13%,13%,13%); stroke-linecap: butt; stroke-width: 1; fill: rgb(13%,13%,13%); fill-rule: evenodd;"/>
+			<path d="M 166 177 C 198 217 252 217 276 177 " style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1; fill: none; fill-rule: evenodd; stroke-dasharray: 4, 3;"/>
+			<path d="M 268,187 L 276,177 Z" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1; stroke-dasharray: 4, 3;"/>
+			<polygon points="276 177, 274.9849 182.591, 270.7682 179.2177" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(41%,44%,50%); fill-rule: evenodd;"/>
+			<text x="182.4173" y="213" style="font-family: Helvetica; font-size: 7.8px;fill: rgb(41%,44%,50%); stroke:none;" transform="translate(0,426) scale(1,-1)">without decomposition</text>
+			<text x="12" y="99" style="font-family: Helvetica-Bold; font-size: 9.2px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,198) scale(1,-1)">Parameter-efficient training</text>
+			<rect x="12" y="39" width="105" height="39" rx="6" ry="6" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="25.066699999999997" y="60.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,121) scale(1,-1)">Gold paragraph and</text>
+			<text x="30.594499999999996" y="50.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,101) scale(1,-1)">support-fact labels</text>
+			<rect x="129" y="39" width="105" height="39" rx="6" ry="6" style="stroke: rgb(75%,29%,0%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="144.36995" y="60.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,121) scale(1,-1)">Teacher-generated</text>
+			<text x="157.0482" y="50.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,101) scale(1,-1)">subquestions</text>
+			<rect x="246" y="39" width="91" height="39" rx="6" ry="6" style="stroke: rgb(23%,47%,34%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="266.5917" y="60.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,121) scale(1,-1)">Gold answer</text>
+			<text x="278.81345" y="50.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,101) scale(1,-1)">targets</text>
+			<rect x="349" y="39" width="132" height="39" rx="6" ry="6" style="stroke: rgb(41%,23%,60%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="357.11165" y="60.5" style="font-family: Helvetica-Bold; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,121) scale(1,-1)">Teacher-generated rationales</text>
+			<text x="374.8695" y="50.5" style="font-family: Helvetica; font-size: 8.3px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,101) scale(1,-1)">for reader supervision</text>
+			<path d="M 65,78 L 130,137 Z" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1.3; stroke-dasharray: 4, 3;"/>
+			<polygon points="130 137, 124.483 135.6387, 128.1124 131.6402" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,30%,47%); fill-rule: evenodd;"/>
+			<path d="M 65,78 L 313,137 Z" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1.3; stroke-dasharray: 4, 3;"/>
+			<polygon points="313 137, 307.5109 138.4695, 308.7607 133.2161" style="stroke: rgb(12%,30%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,30%,47%); fill-rule: evenodd;"/>
+			<path d="M 181,78 L 221,137 Z" style="stroke: rgb(75%,29%,0%); stroke-linecap: butt; stroke-width: 1.3; stroke-dasharray: 4, 3;"/>
+			<polygon points="221 137, 215.9594 134.3766, 220.429 131.3463" style="stroke: rgb(75%,29%,0%); stroke-linecap: butt; stroke-width: 1; fill: rgb(75%,29%,0%); fill-rule: evenodd;"/>
+			<path d="M 291,78 L 404,137 Z" style="stroke: rgb(23%,47%,34%); stroke-linecap: butt; stroke-width: 1.3; stroke-dasharray: 4, 3;"/>
+			<polygon points="404 137, 398.3181 137.0792, 400.8174 132.2924" style="stroke: rgb(23%,47%,34%); stroke-linecap: butt; stroke-width: 1; fill: rgb(23%,47%,34%); fill-rule: evenodd;"/>
+			<path d="M 415,78 L 404,137 Z" style="stroke: rgb(41%,23%,60%); stroke-linecap: butt; stroke-width: 1.3; stroke-dasharray: 4, 3;"/>
+			<polygon points="404 137, 402.2621 131.5898, 407.5707 132.5796" style="stroke: rgb(41%,23%,60%); stroke-linecap: butt; stroke-width: 1; fill: rgb(41%,23%,60%); fill-rule: evenodd;"/>
+			<path d="M 76,15 L 106,15 Z" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="106 15, 101 17.7, 101 12.3" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(41%,44%,50%); fill-rule: evenodd;"/>
+			<text x="114" y="12.5" style="font-family: Helvetica; font-size: 8.0px;fill: rgb(41%,44%,50%); stroke:none;" transform="translate(0,25) scale(1,-1)">inference</text>
+			<path d="M 257,15 L 287,15 Z" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1.1; stroke-dasharray: 4, 3;"/>
+			<polygon points="287 15, 282 17.7, 282 12.3" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1; fill: rgb(41%,44%,50%); fill-rule: evenodd;"/>
+			<text x="295" y="12.5" style="font-family: Helvetica; font-size: 8.0px;fill: rgb(41%,44%,50%); stroke:none;" transform="translate(0,25) scale(1,-1)">optional path or training supervision</text>
+		</g>
+	</g>
+</svg>

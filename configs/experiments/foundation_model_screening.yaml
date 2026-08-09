@@ -1,0 +1,87 @@
+schema_version: 1
+experiment_id: foundation_model_screening_january_2025
+snapshot_cutoff: 2025-01-31
+dataset:
+  split: validation
+  full_examples: 7405
+  proprietary_subset:
+    selection: first_records_in_preserved_order
+    examples: 700
+prompting:
+  mode: direct_answer
+  generation_profile: prompted_or_api
+metrics:
+  - answer_exact_match
+  - answer_f1
+screened_models:
+  closed_source:
+    evaluation_protocol: fixed_700_then_calibrated
+    models:
+      - GPT-4o
+      - Claude 3.5 Sonnet
+      - Gemini 1.5 Pro
+      - GPT-4 Turbo
+      - GPT-4o mini
+      - Gemini 1.5 Flash
+      - GPT-3.5 Turbo
+  open_under_10b:
+    evaluation_protocol: direct_full_validation
+    models:
+      - Llama 3.1 8B Instruct
+      - Llama 3 8B Instruct
+      - Aya23 8B
+      - Gemma 2 9B
+      - Qwen2 7B Instruct
+      - Phi-3 Mini 4K Instruct
+      - Phi-3 Medium 4K Instruct
+      - Mistral 7B Instruct v0.2
+      - Mistral 7B Instruct v0.3
+  open_10b_to_70b:
+    evaluation_protocol: direct_full_validation
+    models:
+      - Aya23 35B
+      - Gemma 2 27B
+      - Command R
+      - Mixtral 8x7B
+  open_approximately_70b:
+    evaluation_protocol: direct_full_validation
+    models:
+      - Qwen2 72B Instruct
+      - Llama 3 70B Instruct
+      - Llama 3.1 70B Instruct
+  open_over_70b:
+    evaluation_protocol: direct_full_validation
+    models:
+      - Mixtral 8x22B
+      - Command R+
+      - Llama 3.1 405B Instruct
+model_count: 26
+calibration:
+  applies_to: proprietary_models_only
+  coefficient_direction: full_set_mean_divided_by_subset_mean
+  separate_coefficient_per_metric: true
+  formula: calibrated_metric = proprietary_subset_metric * open_model_full_over_subset_ratio
+  interpretation: coarse_screening_only
+open_model_reference_pool:
+  - Llama 3.1 8B Instruct
+  - Llama 3 8B Instruct
+  - Aya23 8B
+  - Gemma 2 9B
+  - Qwen2 7B Instruct
+  - Phi-3 Mini 4K Instruct
+  - Phi-3 Medium 4K Instruct
+  - Mistral 7B Instruct v0.2
+  - Mistral 7B Instruct v0.3
+  - Aya23 35B
+  - Gemma 2 27B
+  - Command R
+  - Qwen2 72B Instruct
+  - Llama 3 70B Instruct
+  - Llama 3.1 70B Instruct
+limitations:
+  - Model names identify the latest endpoints or checkpoints available to the authors by the January 2025 cutoff.
+  - Provider endpoints do not supply immutable historical checkpoint revisions.
+  - Proprietary endpoints may change after the snapshot cutoff.
+  - The fixed prefix is not a probability sample.
+  - Transport of the pooled open-model ratio to a proprietary model is an assumption.
+  - Calibrated scores must not support fine-grained ranking or significance claims.

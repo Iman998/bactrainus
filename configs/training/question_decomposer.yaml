@@ -1,0 +1,38 @@
+schema_version: 1
+experiment_id: question_decomposer_8b
+task: question_decomposition
+model: ../models/llama_3_1_8b_instruct.yaml
+data:
+  config: ../data/hotpotqa_distractor.yaml
+  train_examples: 90447
+  release_data_available: false
+  availability_note: Decomposition records are excluded from the public dataset until source-ID provenance is verified.
+training:
+  epochs: 1
+  per_device_batch_size: 8
+  gradient_accumulation_steps: 32
+  effective_batch_size: 256
+  max_sequence_length: 2048
+  learning_rate: 2.0e-5
+  scheduler: cosine
+  warmup_ratio: 0.03
+  lora:
+    rank: 64
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+      - lm_head
+supervision:
+  target: ordered_subquestions
+  teachers:
+    default: llama_3_1_8b_instruct
+    hard_subset:
+      model: llama_3_1_70b_instruct
+      examples: 15661

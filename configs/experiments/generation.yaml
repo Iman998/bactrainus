@@ -1,0 +1,27 @@
+schema_version: 1
+generation_profiles:
+  prompted_or_api:
+    temperature: 0.01
+    top_p: 0.99
+    do_sample: true
+    use_cases:
+      - foundation_model_screening
+      - few_shot_prompting
+  fine_tuned_module:
+    temperature: 0.0001
+    top_p: 0.90
+    do_sample: true
+    use_cases:
+      - paragraph_selection
+      - question_decomposition
+      - sentence_selection
+      - answer_generation
+  integrated_one_step:
+    temperature: 0.0001
+    top_p: 0.99
+    do_sample: true
+    use_cases:
+      - joint_selector_reader
+notes:
+  - Near-zero temperature reduces stochasticity but does not guarantee identical generations across backends.
+  - Max-new-token limits and stop sequences must be taken from the task prompt/runtime manifest because the manuscript does not report one universal value.

@@ -1,0 +1,39 @@
+schema_version: 1
+dataset:
+  name: hotpotqa_distractor
+  source: hotpotqa/hotpot_qa
+  homepage: https://hotpotqa.github.io/
+  language: en
+  license: cc-by-sa-4.0
+  source_id_field: source_id
+splits:
+  train:
+    examples: 90447
+    public_release: true
+  validation:
+    examples: 7405
+    public_release: false
+instance_contract:
+  candidate_paragraphs: 10
+  gold_paragraphs: 2
+  distractor_paragraphs: 8
+  sentence_indices: zero_based
+  preserve_candidate_order: true
+  preserve_sentence_order: true
+public_dataset:
+  repo_id: bactrianus/bactrianus-hotpotqa
+  train_only: true
+  configurations:
+    - structured
+    - reader-sft
+    - paragraph-selector-sft
+    - sentence-selector-sft
+    - joint-selector-reader-sft
+excluded_from_public_dataset:
+  - validation_and_test_records
+  - predictions
+  - evaluation_results
+  - api_payloads
+  - cross_lingual_data
+  - unverified_rationale_records
+  - unverified_decomposition_records

@@ -1,0 +1,47 @@
+schema_version: 1
+experiment_id: selector_reader_integration
+split: validation
+examples: 7405
+scenarios:
+  - id: 1
+    name: all_in_one
+    selector: joint_generation
+    decomposition: false
+    reader_evidence: internal
+  - id: 2
+    name: single_stage_facts
+    selector: single_stage_paragraph_and_sentence
+    decomposition: false
+    reader_evidence: facts
+  - id: 3
+    name: two_stage_facts
+    selector: paragraph_then_sentence
+    decomposition: false
+    reader_evidence: facts
+  - id: 4
+    name: two_stage_paragraphs
+    selector: paragraph_then_sentence
+    decomposition: false
+    reader_evidence: paragraphs
+  - id: 5
+    name: decomposed_facts
+    selector: paragraph_then_decomposition_then_sentence
+    decomposition: true
+    reader_evidence: facts
+  - id: 6
+    name: decomposed_paragraphs
+    selector: paragraph_then_decomposition_then_sentence
+    decomposition: true
+    reader_evidence: paragraphs
+reader_variants:
+  - reader_8b_direct
+  - reader_8b_continuation_rationale_from_70b_teacher
+  - reader_70b_direct
+metrics:
+  - supporting_fact_exact_match
+  - supporting_fact_f1
+  - answer_exact_match
+  - answer_f1
+  - joint_exact_match
+  - joint_f1
+claim_boundary: Scenario contrasts are reported single-run differences and are not additive causal effects.
