@@ -41,7 +41,7 @@ dependencies = [
 [project.optional-dependencies]
 data = [
   "datasets>=3,<5",
-  "pyarrow>=17,<22",
+  "pyarrow>=17,<26",
 ]
 inference = [
   "accelerate>=1,<2",
