@@ -48,7 +48,7 @@ inference = [
   "torch>=2.4,<3",
   "transformers>=4.45,<5",
 ]
-api = ["openai>=1.50,<2"]
+api = ["openai>=1.50,<3"]
 training = [
   "accelerate>=1,<2",
   "datasets>=3,<5",
