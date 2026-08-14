@@ -40,4 +40,4 @@ The controlled architecture experiments in the revised manuscript use Llama 3.1 
 
 ## Repository artwork
 
-`assets/architecture.svg` is original Bactrainus project artwork. It contains no Flaticon assets or other third-party icon files.
+`assets/architecture.svg` is original Bactrainus project artwork. It contains no Flaticon assets or other third-party icon files. `assets/bactrainus-code.png` is project-provided repository artwork and is not derived from the architecture figure.

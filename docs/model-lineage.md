@@ -42,6 +42,6 @@ Model-card metadata therefore names the official `hotpotqa/hotpot_qa` source dat
 
 ## License requirements
 
-The historical weights remain subject to the Meta Llama 3 Community License. Redistribution requires the Meta license agreement, the required attribution notice, and prominent “Built with Meta Llama 3” wording. HotpotQA-derived training data remains subject to CC BY-SA 4.0.
+The historical weights remain subject to the Meta Llama 3 Community License. Redistribution requires the Meta license agreement, the required attribution notice, and prominent "Built with Meta Llama 3" wording. HotpotQA-derived training data remains subject to CC BY-SA 4.0.
 
-The model cards under [`release/hf_model_cards`](../../hf_model_cards/) document these constraints without modifying or relabeling weights.
+The public model cards in the [`bactrianus` Hugging Face organization](https://huggingface.co/bactrianus) document these constraints without modifying or relabeling weights.

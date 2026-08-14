@@ -3,9 +3,12 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![License: Apache-2.0](https://img.shields.io/badge/Code%20License-Apache--2.0-4D7A97.svg)](LICENSE)
 [![Paper](https://img.shields.io/badge/arXiv-2501.06286-B31B1B.svg)](https://arxiv.org/abs/2501.06286)
-[![Models and data](https://img.shields.io/badge/Hugging%20Face-bactrianus-FFD21E.svg)](https://huggingface.co/bactrianus)
 
-Bactrainus is a modular selector--reader framework for multi-hop question answering over the HotpotQA distractor setting. It turns one opaque generation step into explicit, inspectable decisions: select relevant paragraphs, identify supporting sentences, and answer from compact evidence. Optional question decomposition refines sentence selection, while optional rationale supervision changes the reader target without treating generated rationales as gold evidence.
+<p align="center">
+  <img src="assets/bactrainus-code.png" alt="Bactrainus code repository artwork" width="720">
+</p>
+
+Bactrainus is a modular selector--reader framework for multi-hop question answering over the HotpotQA distractor setting. It demonstrates that supervised adaptation can turn an instruction-tuned LLM into a practical retriever over a supplied candidate set: the model selects relevant paragraphs and supporting sentences before a reader answers from compact evidence. Optional question decomposition refines sentence selection, while optional rationale supervision changes the reader target without treating generated rationales as gold evidence.
 
 This repository is the cleaned research implementation accompanying the revised manuscript. It contains code, machine-readable experiment configurations, documentation, and small test fixtures. Model weights, release datasets, and experiment outputs are deliberately hosted separately.
 
@@ -13,7 +16,9 @@ This repository is the cleaned research implementation accompanying the revised 
 
 ## Architecture
 
-![Bactrainus selector--reader architecture](assets/architecture.svg)
+<p align="center">
+  <img src="assets/architecture.svg" alt="Bactrainus selector--reader architecture" width="780">
+</p>
 
 For a HotpotQA instance with question \(q\), a supplied candidate set \(D\) of
 \(m\in\{2,\ldots,10\}\) paragraphs, gold answer \(a\), supporting facts \(S\),
@@ -36,7 +41,8 @@ See [Architecture](docs/architecture.md) for the formal interfaces and failure b
 |---|---|---:|
 | Clean implementation and tests | This repository | Yes |
 | Revised experiment configurations | [`configs/`](configs/) | Yes |
-| Complete canonical training suite | [`bactrianus/bactrainus-hotpotqa`](https://huggingface.co/datasets/bactrianus/bactrainus-hotpotqa) | No |
+| Complete canonical training suite | [`bactrianus/bactrainus-hotpotqa` (`v1.0.0`)](https://huggingface.co/datasets/bactrianus/bactrainus-hotpotqa/tree/v1.0.0) | No |
+| Teacher-generated CoT and decomposition traces | [`bactrianus/bactrainus-hotpotqa-teacher-traces` (`v1.0.0`)](https://huggingface.co/datasets/bactrianus/bactrainus-hotpotqa-teacher-traces/tree/v1.0.0) | No |
 | Historical Llama 3 models | [`bactrianus`](https://huggingface.co/bactrianus) | No |
 | Evaluation predictions and result files | Not distributed in the code repository | No |
 | Full methodology and reported results | [arXiv:2501.06286](https://arxiv.org/abs/2501.06286) | No |
