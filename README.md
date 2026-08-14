@@ -5,7 +5,7 @@
 [![Paper](https://img.shields.io/badge/arXiv-2501.06286-B31B1B.svg)](https://arxiv.org/abs/2501.06286)
 
 <p align="center">
-  <img src="assets/bactrainus-code.png" alt="Bactrainus code repository artwork" width="720">
+  <img src="assets/bactrainus-code.png" alt="Bactrainus code repository artwork" width="360">
 </p>
 
 Bactrainus is a modular selector--reader framework for multi-hop question answering over the HotpotQA distractor setting. It demonstrates that supervised adaptation can turn an instruction-tuned LLM into a practical retriever over a supplied candidate set: the model selects relevant paragraphs and supporting sentences before a reader answers from compact evidence. Optional question decomposition refines sentence selection, while optional rationale supervision changes the reader target without treating generated rationales as gold evidence.
